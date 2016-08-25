@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mohoo.data.collection.dao.AppInfoDAO">
+	<resultMap type="com.mohoo.data.collection.domain.AppInfo"
+		id="AppInfo">
+		<result property="itemid" column="itemid" />
+		<result property="appid" column="appid" />
+		<result property="secret" column="secret" />
+	</resultMap>
+	<select id="checkApp" parameterType="string" resultType="int">
+		SELECT COUNT(0) FROM WX_APP
+		<where>
+			appid = #{appid}
+			AND secret = #{secret}
+			AND status = '200'
+		</where>
+	</select>
+	<select id="findKey" parameterType="map" resultType="int">
+		SELECT itemid FROM WX_APP
+		<where>
+			appid = #{appid}
+			AND secret = #{secret}
+			AND status = '200'
+		</where>
+		LIMIT 1
+	</select>
+	<select id="findAllApp" resultMap="AppInfo">
+		SELECT itemid,appid,secret FROM WX_APP
+		<where>
+			status = '200'
+		</where>
+	</select>
+	<select id="findAppByAppid" parameterType="string" resultMap="AppInfo">
+		SELECT itemid,appid,secret FROM WX_APP
+		<where>
+			appid = #{appid}
+			AND status = '200'
+		</where>
+		LIMIT 1
+	</select>
+</mapper>
