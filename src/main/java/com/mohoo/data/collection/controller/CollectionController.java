@@ -37,7 +37,7 @@ import com.mohoo.data.collection.util.ResultUtil;
  * @version 1.0
  */
 @RestController
-@RequestMapping("wx/api/" + ConstantUtil.VERSION + "/collection")
+@RequestMapping("statistics/api/" + ConstantUtil.VERSION + "/collection")
 public class CollectionController {
 
 	private static final Logger logger = LoggerFactory
